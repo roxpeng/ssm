@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views/template">
+	<decorator name="default" page="frame.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	<!-- 不使用模板 -->
+	<excludes>
+		<pattern>/static/*</pattern>
+		<pattern>/views/error/*</pattern>
+		<pattern>/login</pattern>
+		<pattern>/welcome.html</pattern>
+	</excludes>
+</decorators>

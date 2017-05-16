@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rm.rox.dao.UserInfoDao" >
+	<!-- 返回定义 -->
+  <resultMap id="BaseResultMap" type="com.rm.rox.bean.UserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="creation_time" property="creationTime" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 查询集合 -->
+  <sql id="Base_Column_List" >
+    id, login_name, name, password, salt, role_id, creation_time, note, flag, user_type
+  </sql>
+  <!-- 主键查询 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据登录用户查询-->
+  <select id="selectByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_info
+    where login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据主键删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rm.rox.bean.UserInfo" >
+    insert into t_user_info (id, login_name, name, 
+      password, salt, role_id, 
+      creation_time, note, flag, 
+      user_type)
+    values (#{id,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, 
+      #{creationTime,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{userType,jdbcType=VARCHAR})
+  </insert>
+  
+  <!-- 灵活新增 -->
+  <insert id="insertSelective" parameterType="com.rm.rox.bean.UserInfo" >
+    insert into t_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 灵活修改 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.rm.rox.bean.UserInfo" >
+    update t_user_info
+    <set >
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="creationTime != null" >
+        creation_time = #{creationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 根据主键修改 -->
+  <update id="updateByPrimaryKey" parameterType="com.rm.rox.bean.UserInfo" >
+    update t_user_info
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
+      creation_time = #{creationTime,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      user_type = #{userType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <!-- 灵活查询 (2016-11-21号新增,没做测试,以后补测试)-->
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.rm.rox.bean.UserInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_info
+    where 1=1 
+     <if test="loginName != null" >
+        and login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        and password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        and salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        and role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="creationTime != null" >
+        and creation_time = #{creationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        and note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        and flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        and user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+  </select>
+  
+   <!-- 自定义sql查询 (2016-11-21号新增,没做测试,以后补测试)-->
+  <select id="queryForSql" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_info
+    where 1=1 
+    <if test="selSql != null" >
+     and selSql
+    </if>
+  </select>
+</mapper>
