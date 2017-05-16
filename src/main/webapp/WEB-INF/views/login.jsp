@@ -11,7 +11,6 @@
 	<!--Basic Styles-->
 	<link id="bootstrap-rtl-link" href="" rel="stylesheet" />
 	<!--Beyond styles-->
-	<
 	<link id="skin-link" href="" rel="stylesheet" type="text/css" />
 	
 	<!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
